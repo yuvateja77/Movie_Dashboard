@@ -1,36 +1,138 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# My Movie Database
+
+A clean movie browsing app built with **Next.js 14**, TypeScript, and TMDB API. It lets users explore popular movies and open a dedicated details page for each title.
+
+## Features
+
+- Browse a list of popular movies
+- View movie posters, titles, and short overviews
+- Open a dynamic movie details page using route params
+- Fetch live data from TMDB API
+- Use Next.js Image optimization for external movie posters
+- Keep API keys secure with environment variables
+- Built with App Router and server components
+
+## Tech Stack
+
+- Next.js 14
+- React
+- TypeScript
+- CSS Modules
+- TMDB API
+
+## Project Structure
+
+```bash
+app/
+├── page.tsx                 # Home page with movie list
+├── layout.tsx               # Shared app layout
+├── globals.css              # Global styles
+├── movie/
+│   └── [id]/
+│       └── page.tsx         # Dynamic movie details page
+components/
+├── MovieCard/
+│   ├── MovieCard.tsx
+│   ├── MovieCard.module.css
+│   └── index.ts
+└── MovieDetails/
+    ├── MovieDetails.tsx
+    ├── MovieDetails.module.css
+    └── index.ts
+```
 
 ## Getting Started
 
-First, run the development server:
+### 1. Clone the repository
+
+```bash
+git clone <your-repo-url>
+cd <your-project-folder>
+```
+
+### 2. Install dependencies
+
+```bash
+npm install
+```
+
+### 3. Add environment variables
+
+Create a `.env.local` file in the root folder:
+
+```env
+API_KEY=your_tmdb_api_key
+```
+
+Get your API key from TMDB.
+
+### 4. Run the development server
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open `http://localhost:3000` in your browser.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## API Used
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+This project uses the TMDB API for:
 
-## Learn More
+- Popular movies list
+- Movie details by ID
+- Poster images
 
-To learn more about Next.js, take a look at the following resources:
+Useful endpoints:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```bash
+https://api.themoviedb.org/3/movie/popular?api_key=YOUR_API_KEY
+https://api.themoviedb.org/3/movie/{id}?api_key=YOUR_API_KEY
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Next.js Notes
 
-## Deploy on Vercel
+A few important things used in this project:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- `app` directory routing
+- Dynamic routing with `movie/[id]`
+- Async server components for data fetching
+- `next/image` for optimized poster rendering
+- Remote image configuration in `next.config.js`
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Example image config:
+
+```js
+images: {
+  remotePatterns: [
+    {
+      protocol: 'https',
+      hostname: 'image.tmdb.org',
+    },
+  ],
+}
+```
+
+## Possible Improvements
+
+- Add search functionality
+- Add pagination
+- Show movie genres and ratings on cards
+- Add loading and error states
+- Add skeleton UI
+- Add dark mode
+- Deploy on Vercel
+
+## Lessons Learned
+
+Through this project, I practiced:
+
+- Next.js App Router basics
+- Server-side data fetching
+- Dynamic routes
+- Reusable component structure
+- API integration with environment variables
+- Handling external images in Next.js
+
+## Author
+
+Built by **Yuva Teja**.
